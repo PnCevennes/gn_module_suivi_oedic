@@ -1,19 +1,14 @@
 [[app]]
     id = 1
-    name = "Chiroptères"
-    base_url = "suivi_chiro/site"
-    appId = "suivi_chiro"
-    img = "img/chiro.png"
+    name = "Oedicnèmes"
+    base_url = "suivi_oedic/site"
+    appId = "suivi_oedic"
+    img = "img/oedic.png"
 
     [[app.menu]]
-        url = "#/suivi_chiro/site"
-        config_url = "config?app=suivi_chiro&vue=site&vue=list"
-        data_url = "suivi_chiro/sites"
+        url = "#/suivi_oedic/site"
+        config_url = "config?app=suivi_oedic&vue=site&vue=list"
+        data_url = "suivi_oedic/sites"
         label = "Suivi"
         restrict = 2
-
-    [[app.menu]]
-        url = "#/suivi_chiro/inventaire"
-        label = "Inventaire"
-        config_url = "config?app=suivi_chiro&vue=visite&vue=list_ssite"
-        restrict = 2
+s
