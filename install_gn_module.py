@@ -18,6 +18,7 @@ def gnmodule_install_app(gn_db, gn_app):
     '''
     with gn_app.app_context():
 
+        print('install_db.sh ...')
         subprocess.call(
             [
                 str(ROOT_DIR / 'install_db.sh'),
@@ -25,6 +26,8 @@ def gnmodule_install_app(gn_db, gn_app):
             ],
             cwd=str(gn_app.config['BASE_DIR'])
         )
+
+        print('install_db.sh done')
 
         # Création des liens symboliques pour la configuration
         try:
@@ -57,9 +60,9 @@ def gnmodule_install_app(gn_db, gn_app):
             'apps.toml'
         )
 
-        with open(str(ROOT_DIR / 'configs/apps.toml')) as config_chiro:
+        with open(str(ROOT_DIR / 'configs/apps.toml')) as config_oedic:
             with open(str(suivi_app_file_dir), "w") as suivi_app_file:
                 suivi_app_file.write("\n\n")
-                suivi_app_file.writelines(config_chiro)
+                suivi_app_file.writelines(config_oedic)
             suivi_app_file.close()
-        config_chiro.close()
+        config_oedic.close()
