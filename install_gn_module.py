@@ -18,7 +18,6 @@ def gnmodule_install_app(gn_db, gn_app):
     '''
     with gn_app.app_context():
 
-        print('install_db.sh ...')
         subprocess.call(
             [
                 str(ROOT_DIR / 'install_db.sh'),
@@ -26,8 +25,6 @@ def gnmodule_install_app(gn_db, gn_app):
             ],
             cwd=str(gn_app.config['BASE_DIR'])
         )
-
-        print('install_db.sh done')
 
         # Création des liens symboliques pour la configuration
         try:

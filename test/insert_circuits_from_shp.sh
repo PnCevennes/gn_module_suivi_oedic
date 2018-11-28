@@ -6,10 +6,11 @@ then
 echo shp file $1 not found
 exit 1;
 
-
 fi
 
 . ~/geonature/config/settings.ini
+
+echo "DELETE FROM gn_monitoring.t_base_sites WHERE id_nomenclature_type_site = ref_nomenclatures.get_id_nomenclature('TYPE_SITE', 'OEDIC');" | psql -h $db_host -U $user_pg -d $db_name
 
 echo "DROP TABLE IF EXISTS temp;" | psql -h $db_host -U $user_pg -d $db_name
 
@@ -26,3 +27,10 @@ INSERT INTO gn_monitoring.t_base_sites(base_site_name, base_site_code, geom, id_
             AND cd_nomenclature='OEDIC')a;" | psql -h $db_host -U $user_pg -d $db_name
 
 echo "DROP TABLE IF EXISTS temp;" | psql -h $db_host -U $user_pg -d $db_name
+
+echo "
+INSERT INTO gn_monitoring.cor_site_application(id_base_site, id_application)
+    SELECT s.id_base_site, a.id_application
+        FROM utilisateurs.t_applications as a, gn_monitoring.t_base_sites as s
+        WHERE a.nom_application = 'suivi_oedic'
+            AND s.id_nomenclature_type_site = ref_nomenclatures.get_id_nomenclature('TYPE_SITE', 'OEDIC');" | psql -h $db_host -U $user_pg -d $db_name

@@ -5,12 +5,12 @@ point d'entrée du module chiro
 # from sqlalchemy.orm.exc import NoResultFound
 
 
-from flask import Blueprint  # , request, current_app
+from flask import Blueprint, request  # , current_app
 
-from geonature.utils.env import DB, get_module_id
-# from geonature.utils.utilssqlalchemy import json_resp
+from geonature.utils.env import get_module_id, DB
+from geonature.utils.utilssqlalchemy import json_resp
 
-# from geonature.core.gn_monitoring.models import TBaseVisits
+from geonature.core.gn_monitoring.models import TBaseSites, TBaseVisits
 # from .models.models import InfoSite, ContactTaxon, Biometrie
 
 try:
@@ -30,20 +30,39 @@ blueprint = Blueprint('gn_module_suivi_oedic', __name__)
 #     else:
 #         return {}
 
-# def load_site(id_site):
-#     try:
-#         result = DB.session.query(InfoSite).filter_by(id_base_site=id_site).one()
-#         return [
-#             base_breadcrumb('site'),
-#             {
-#                 'id': id_site,
-#                 'link': '#/suivi_chiro/site/%s' % id_site,
-#                 'label': result.base_site.base_site_name
-#             }
-#         ]
-#     except NoResultFound:
-#         return [base_breadcrumb('inventaire')]
 
+def load_site(id_site):
+
+    result = DB.session.query(TBaseSites).filter_by(id_base_site=id_site).first()
+
+    if not result:
+
+        return None
+
+    return [
+        {
+            'id': id_site,
+            'link': '#/g/suivi_chiro/site/%s' % id_site,
+            'label': result.base_site_code + '-' + result.base_site_name
+        }
+    ]
+
+
+def load_visite(id_visit):
+
+        visit = DB.session.query(TBaseVisits).filter_by(id_base_visit=id_visit).first()
+
+        if not visit:
+
+            return None
+
+        return [
+            {
+                'id': id_visit,
+                'link': '#/g/suivi_chiro/visit/%s' % id_visit,
+                'label': str(visit.visit_date_min)
+            }
+        ]
 
 
 # def load_visite(id_visite):
@@ -93,13 +112,54 @@ blueprint = Blueprint('gn_module_suivi_oedic', __name__)
 #     return bread
 
 
-# @blueprint.route('/config/breadcrumb')
-# @json_resp
-# def breadcrumb():
-#     view = request.args.get('view')
-#     id_obj = request.args.get('id', None)
+@blueprint.route('/config/<string:view>/<string:type>', defaults={'id_obj': None})
+@blueprint.route('/config/<string:view>/<string:type>/<string:id_obj>')
+@json_resp
+def config(view, type, id_obj):
 
-#     out = []
+    if view == 'site':
+
+            if not id_obj:
+
+                # return {'id': None, 'link': '#/g/suivi_oedic/site/list', 'label': 'Sites'}
+                return {'id': None, 'link': '/config', 'label': 'Sites'}
+
+            return load_site(id_obj)
+
+    if not id_obj:
+
+        return None
+
+    if view == 'visite':
+
+        return load_visite(id_obj)
+
+    return view
+
+
+@blueprint.route('/config/breadcrumb')
+@json_resp
+def breadcrumb():
+    view = request.args.get('view')
+    id_obj = request.args.get('id', None)
+
+    if view == 'site':
+
+        if not id_obj:
+
+            return {'id': None, 'link': '#/suivi_oedic/site', 'label': 'Sites'}
+
+        return load_site(id_obj)
+
+    if not id_obj:
+
+        return None
+
+    if view == 'visite':
+
+        return load_visite(id_obj)
+
+    #     out = []
 
 #     if id_obj:
 #         if view == 'site':
@@ -112,12 +172,14 @@ blueprint = Blueprint('gn_module_suivi_oedic', __name__)
 #             out = load_biometrie(id_obj)
 #     else:
 #         out = [base_breadcrumb(view)]
-#     return out
+
+    return
 
 
 from .routes import (
     site,
-    # visite,
+    visite,
+    observation
     # contact_taxon,
     # biometrie
 )

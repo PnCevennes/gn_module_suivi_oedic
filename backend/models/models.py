@@ -24,6 +24,8 @@ class TVisiteInformation(DB.Model):
     nb_ind_obs_max = DB.Column(DB.Integer)
     id_nomenclature_meteo_vent = DB.Column(DB.Integer)
     id_nomenclature_meteo_ciel = DB.Column(DB.Integer)
+    time_start = DB.Column(DB.DateTime)
+    time_end = DB.Column(DB.DateTime)
 
 
 @serializable
@@ -34,7 +36,7 @@ class TVisiteObservation(DB.Model):
 
     id_visite_observation = DB.Column(DB.Integer, primary_key=True)
     id_base_visit = DB.Column(DB.Integer, ForeignKey(TVisiteInformation.id_base_visit))
-    date_observation = DB.Column(DB.DateTime)
+    time_observation = DB.Column(DB.DateTime)
     nb_oiseaux = DB.Column(DB.Integer)
     remarque_observation = DB.Column(DB.Text)
     id_nomenclature_nature_observation = DB.Column(DB.Integer)
