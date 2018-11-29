@@ -1,14 +1,14 @@
 [[app]]
     id = 1
     name = "Oedicnèmes"
-    base_url = "suivi_oedic/site"
+    base_url = "g/suivi_oedic/site/list"
     appId = "suivi_oedic"
     img = "img/oedic.png"
 
     [[app.menu]]
-        url = "#/suivi_oedic/site"
+        url = "#/g/suivi_oedic/site/list"
         config_url = "config?app=suivi_oedic&vue=site&vue=list"
         data_url = "suivi_oedic/sites"
         label = "Suivi"
         restrict = 2
-s
+
