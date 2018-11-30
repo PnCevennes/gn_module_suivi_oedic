@@ -5,7 +5,7 @@ from geonature.utils.utilssqlalchemy import (
     serializable,
 )
 
-from geonature.core.gn_monitoring.models import TBaseVisits, TBaseSite
+from geonature.core.gn_monitoring.models import TBaseVisits, TBaseSites
 
 
 @serializable
@@ -16,10 +16,9 @@ class TVisiteInformation(DB.Model):
 
     id_base_visit = DB.Column(
         DB.Integer,
-        ForeignKey(TBaseVisits.id_base_visit),
-        primary_key=True
+        ForeignKey(TBaseVisits.id_base_visit)
     )
-    id_base_visit = DB.Column(DB.Integer, ForeignKey(TBaseSite.id_base_visit))
+    id_base_visit = DB.Column(DB.Integer, ForeignKey(TBaseSites.id_base_site), primary_key=True)
     nb_ind_obs_min = DB.Column(DB.Integer)
     nb_ind_obs_max = DB.Column(DB.Integer)
     id_nomenclature_meteo_vent = DB.Column(DB.Integer)
@@ -42,4 +41,4 @@ class TVisiteObservation(DB.Model):
     id_nomenclature_nature_observation = DB.Column(DB.Integer)
 
 
-TVisiteInformation.observations = DB.relationship(lambda: TVisiteObservation, cascade="save-update, merge, delete, delete-orphan")
+TVisiteInformation.observations = DB.relationship(TVisiteObservation, cascade="save-update, merge, delete, delete-orphan")

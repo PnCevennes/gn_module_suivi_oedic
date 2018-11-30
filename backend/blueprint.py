@@ -11,7 +11,9 @@ from geonature.utils.env import get_module_id, DB
 from geonature.utils.utilssqlalchemy import json_resp
 
 from geonature.core.gn_monitoring.models import TBaseSites, TBaseVisits
-# from .models.models import InfoSite, ContactTaxon, Biometrie
+
+from .models.models import TVisiteObservation
+
 
 try:
     ID_MODULE = get_module_id('suivi_oedic')
@@ -60,10 +62,28 @@ def load_visite(id_visit):
             {
                 'id': id_visit,
                 'link': '#/g/suivi_chiro/visit/%s' % id_visit,
-                'label': str(visit.visit_date_min)
+                'label': 'Visite du ' + str(visit.visit_date_min)
             }
         ]
 
+
+def load_observation(id_visite_observation):
+
+        data = DB.session.query(TVisiteObservation).filter(TVisiteObservation.id_visite_observation == id_visite_observation).first()
+
+        print(data)
+
+        if not data:
+
+            return None
+
+        return [
+            {
+                'id': id_visite_observation,
+                'link': '#/g/suivi_chiro/observation/%s' % id_visite_observation,
+                'label': ""
+            }
+        ]
 
 # def load_visite(id_visite):
 #     result = DB.session.query(
@@ -112,29 +132,29 @@ def load_visite(id_visit):
 #     return bread
 
 
-@blueprint.route('/config/<string:view>/<string:type>', defaults={'id_obj': None})
-@blueprint.route('/config/<string:view>/<string:type>/<string:id_obj>')
-@json_resp
-def config(view, type, id_obj):
+# @blueprint.route('/config/<string:view>/<string:type>', defaults={'id_obj': None})
+# @blueprint.route('/config/<string:view>/<string:type>/<string:id_obj>')
+# @json_resp
+# def config(view, type, id_obj):
 
-    if view == 'site':
+#     if view == 'site':
 
-            if not id_obj:
+#             if not id_obj:
 
-                # return {'id': None, 'link': '#/g/suivi_oedic/site/list', 'label': 'Sites'}
-                return {'id': None, 'link': '/config', 'label': 'Sites'}
+#                 # return {'id': None, 'link': '#/g/suivi_oedic/site/list', 'label': 'Sites'}
+#                 return {'id': None, 'link': '/config', 'label': 'Sites'}
 
-            return load_site(id_obj)
+#             return load_site(id_obj)
 
-    if not id_obj:
+#     if not id_obj:
 
-        return None
+#         return None
 
-    if view == 'visite':
+#     if view == 'visite':
 
-        return load_visite(id_obj)
+#         return load_visite(id_obj)
 
-    return view
+#     return view
 
 
 @blueprint.route('/config/breadcrumb')
@@ -158,6 +178,10 @@ def breadcrumb():
     if view == 'visite':
 
         return load_visite(id_obj)
+
+    if view == 'observation':
+
+        return load_observation(id_obj)
 
     #     out = []
 

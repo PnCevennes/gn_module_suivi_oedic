@@ -1,0 +1,36 @@
+editAccessOverride = "id_digitiser"
+deleteAccessOverride = "id_digitiser"
+deleteAccess = 5
+dataUrl = "suivi_oedic/observation/"
+editAccess = 3
+
+updateSuccessMessage = "Modification réussie"
+createSuccessMessage = "Création réussie"
+formTitleUpdate = "Modification de l'observation"
+
+[[groups]]
+name = "Observations"
+
+    [[groups.fields]]
+        name = "id"
+        type = "hidden"
+
+    [[groups.fields]]
+        name = "id_base_visite"
+        type = "hidden"
+
+
+    [[groups.fields]]
+        label = "Nombre d'oiseaux"
+        name = "nb_oiseaux"
+        type = "num"
+
+    [[groups.fields]]
+        label = "Heure"
+        name = "time_observation"
+        type = "time"
+
+    [[groups.fields]]
+        label = "Remarques"
+        name = "remarque_observation"
+        type = "string"

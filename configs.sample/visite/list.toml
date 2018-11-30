@@ -1,0 +1,43 @@
+emptyMsg = "Aucune visite"
+createUrl = "suivi_oedic/edit/observation/site/"
+detailUrl = "g/suivi_oedic/visite/detail/"
+editAccess = 2
+createBtnLabel = "Nouvelle visite"
+editUrl = "suivi_oedic/edit/observation/"
+title = "Visites"
+
+[[fields]]
+    name = "id_base_visit"
+    label = "ID"
+    [fields.filter]
+        id_base_visit = "text"
+    [fields.options]
+        visible = false
+
+[[fields]]
+    name = "visit_date_min"
+    label = "Date de visite"
+    [fields.filter]
+        visit_date_min = "text"
+    [fields.options]
+        visible = true
+        type = "date"
+        primary = true
+
+[[fields]]
+    name = "observateurs"
+    label = "Observateurs"
+    [fields.filter]
+        observateurs = "text"
+    [fields.options]
+        visible = true
+        type = ""
+
+[filtering]
+    limit = 200
+    [[filtering.fields]]
+        name = "visit_date_min"
+        type = "date"
+        label = "Date d'observation"
+
+

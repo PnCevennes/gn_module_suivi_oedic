@@ -1,0 +1,40 @@
+editAccessOverride = "id_digitiser"
+subDataUrl = "suivi_oedic/observations/"
+subSchemaUrl = "config?app=suivi_oedic&vue=observation&vue=list"
+subEditRef = "id"
+editAccess = 3
+
+subEditSchemaUrl = "config?app=suivi_oedic&vue=obs_taxon&vue=form_many"
+subEditAccess = 2
+subEditSaveUrl = "suivi_oedic/obs_taxon/many"
+subSchemaAdd = 2
+dataUrl = "suivi_oedic/visite/"
+
+
+[[groups]]
+name = "Visite"
+glyphicon = "glyphicon-info-sign"
+
+    [[groups.fields]]
+        name = "time_start"
+        type = "time"
+        label = "Départ"
+
+    [[groups.fields]]
+        name = "time_end"
+        type = "time"
+        label = "Arrivée"
+
+    [[groups.fields]]
+        name = "nb_ind_obs_min"
+        type = "num"
+        label = "Nb obs. min."
+
+
+    [[groups.fields]]
+        name = "nb_ind_obs_max"
+        type = "num"
+        label = "Nb obs. max."
+
+[[groups]]
+name = "Autre"

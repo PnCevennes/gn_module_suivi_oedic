@@ -39,7 +39,7 @@ def get_visite_oedic(id_base_visit):
         {"id_base_visit": id_base_visit}, limit, offset
     ).return_query()
 
-    if not data:
+    if not data.get('items', None):
 
         return None
 

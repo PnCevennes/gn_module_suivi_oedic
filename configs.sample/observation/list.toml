@@ -1,0 +1,48 @@
+emptyMsg = "Aucune observation"
+createUrl = "suivi_oedic/edit/taxons/observation/"
+detailUrl = "g/suivi_oedic/observation/detail/"
+mapSize = "small"
+dataUrl = "suivi_oedic/observations"
+mapConfig = "js/resources/oedic_site.json"
+editAccess = 3
+createBtnLabel = "Ajouter observation"
+editUrl = "suivi_oedic/edit/observation/"
+title = "Observations"
+
+[[fields]]
+    name = "id_visite_observation"
+    label = "ID"
+    type = "text"
+    [fields.filter]
+        id_contact_taxon = "text"
+    [fields.options]
+        visible = false
+
+[[fields]]
+    name = "time_observation"
+    label = "Heure"
+    type = "date"
+    [fields.filter]
+        time_observation = "text"
+    [fields.options]
+        visible = true
+
+[[fields]]
+    name = "nb_oiseaux"
+    label = "Nombre d'individus"
+    type = "num"
+    [fields.filter]
+        nb_total_min = "text"
+    [fields.options]
+        visible = true
+
+[[fields]]
+    name = "id_nomenclature_nature_observation"
+    thesaurus_code_type =  "OED_NAT_OBS"
+    label = "Nature de l'observation"
+    type = "select"
+    [fields.filter]
+        id_nomenclature_nature_observation = "text"
+    [fields.options]
+        visible = true
+        type = "select"

@@ -3,6 +3,7 @@ DROP VIEW IF EXISTS monitoring_oedic.v_sites_oedic;
 
 CREATE OR REPLACE VIEW monitoring_oedic.v_sites_oedic AS
     SELECT s.id_base_site AS id,
+        s.id_base_site,
         s.base_site_name,
         LPAD(s.base_site_code, 2, '0') as base_site_code,
         s.base_site_description,
@@ -28,10 +29,13 @@ CREATE OR REPLACE VIEW monitoring_oedic.v_visites_oedic AS
         v.comments,
         v.visit_date_min,
         v.visit_date_max,
+        vi.time_start,
+        vi.time_end,
         vi.nb_ind_obs_min,
         vi.nb_ind_obs_max,
         vi.id_nomenclature_meteo_ciel,
         vi.id_nomenclature_meteo_vent,
+        s.base_site_name,
         -- (SELECT STRING_AGG(u, ', ')
         (SELECT ARRAY_AGG(u)
             FROM
@@ -48,11 +52,16 @@ CREATE OR REPLACE VIEW monitoring_oedic.v_visites_oedic AS
         JOIN gn_monitoring.t_base_sites s ON v.id_base_site = s.id_base_site
         ORDER BY v.visit_date_min DESC;
 
+
+DROP VIEW IF EXISTS monitoring_oedic.v_observations_oedic;
+
 CREATE OR REPLACE VIEW monitoring_oedic.v_observations_oedic AS
-    SELECT o.id_visite_observation,
+    SELECT o.id_visite_observation as id,
+        o.id_visite_observation,
         o.id_base_visit,
         o.id_nomenclature_nature_observation,
         o.nb_oiseaux,
-        o.time_observation
+        o.time_observation,
+        o.remarque_observation
         FROM monitoring_oedic.t_visite_observations as o
         ORDER BY time_observation;

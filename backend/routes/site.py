@@ -38,8 +38,12 @@ def get_one_site_oedic(id_site):
     offset = int(request.args.get('offset', 0))
 
     data = GenericQuery(
-        DB.session, 'v_sites_oedic', 'monitoring_oedic', "geom",
+        DB.session, 'v_sites_oedic', 'monitoring_oedic', None,
         {"id_base_site": id_site}, limit, offset
     ).return_query()
+
+    if data:
+
+        data = data['items'][0]
 
     return data

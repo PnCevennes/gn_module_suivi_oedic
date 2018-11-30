@@ -1,0 +1,23 @@
+subDataUrl = "suivi_oedic/visites/"
+subSchemaUrl = "config?app=suivi_oedic&vue=visite&vue=list"
+formUrl = "config?app=suivi_oedic&vue=site&vue=form"
+mapSize = "large"
+dataUrl = "suivi_oedic/site/"
+mapConfig = "static/configs/suivi_oedic/resources/oedic_site.json"
+editAccess = 3
+mapData = "suivi_oedic/sites"
+subEditAccess = 2
+
+[[groups]]
+name = "Site"
+glyphicon = "glyphicon-info-sign"
+
+    [[groups.fields]]
+        name = "base_site_code"
+        label = "Code site"
+        type = "string"
+
+    [[groups.fields]]
+        name = "base_site_name"
+        label = "Nom du site"
+        type = "string"

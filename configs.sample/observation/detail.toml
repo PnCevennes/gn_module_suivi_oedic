@@ -1,0 +1,36 @@
+editAccessOverride = "id_digitiser"
+dataUrl = "suivi_oedic/observation/"
+
+editAccess = 3
+
+formUrl = "config?app=suivi_oedic&vue=observation&vue=form"
+
+[[groups]]
+    name = "Général"
+    glyphicon = "glyphicon-info-sign"
+
+
+[[groups.fields]]
+    name = "time_observation"
+    label = "Heure"
+    type = "time"
+
+
+[[groups.fields]]
+    name = "nb_oiseaux"
+    label = "Nombre d'individus"
+    type = "num"
+
+
+[[groups.fields]]
+    name = "id_nomenclature_nature_observation"
+    thesaurus_code_type =  "OED_NAT_OBS"
+    label = "Nature de l'observation"
+    type = "select"
+
+
+[[groups.fields]]
+    name = "remarque_observation"
+    label = "Remarque"
+    type = "string"
+

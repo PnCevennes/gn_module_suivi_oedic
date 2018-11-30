@@ -1,0 +1,49 @@
+[
+    {
+        "order" : 1,
+        "id": "sample",
+        "clustering": false,
+        "name": "Map",
+        "center": {
+            "lat": 44.3266459,
+            "lng": 3.6072651,
+            "zoom": 10
+        },
+        "layers": {
+            "baselayers": [
+                {
+                    "name": "IGN Carte",
+                    "type": "xyz",
+                    "url": "http://wxs.ign.fr/choisirgeoportail/geoportail/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=GEOGRAPHICALGRIDSYSTEMS.MAPS&STYLE=normal&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=image%2Fjpeg",
+                    "active": true,
+                    "options": {}
+                },
+                {
+                    "name": "IGN Ortho",
+                    "type": "xyz",
+                    "url": "http://wxs.ign.fr/choisirgeoportail/geoportail/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=ORTHOIMAGERY.ORTHOPHOTOS&STYLE=normal&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=image%2Fjpeg",
+                    "active": false,
+                    "options": {}
+                },
+                {
+                    "name": "OpenCycleMap",
+                    "type": "xyz",
+                    "url": "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
+                    "active": false,
+                    "options":{}
+                },
+                {
+                    "name": "OpenStreetMap",
+                    "type": "xyz",
+                    "url": "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+                    "active": false,
+                    "options":{}
+                }
+            ]
+        }
+    }
+]
+
+
+
+

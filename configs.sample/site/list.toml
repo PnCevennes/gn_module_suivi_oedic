@@ -1,0 +1,76 @@
+emptyMsg = "Aucun site pour le moment"
+createUrl = "suivi_oedic/edit/site/"
+detailUrl = "g/suivi_oedic/site/detail/"
+mapSize = "large"
+dataUrl = "suivi_oedic/sites"
+mapConfig = "static/configs/suivi_oedic/resources/oedic_site.json"
+editAccess = 5
+createBtnLabel = "Nouveau circuit"
+editUrl = "suivi_oedic/edit/site/"
+title = "Circuits œdicnème"
+
+[[fields]]
+    label = "ID"
+    type = "text"
+    name = "id_base_site"
+    [fields.filter]
+        id_base_site = "text"
+    [fields.options]
+        visible = false
+
+[[fields]]
+    label = "Numero de circuit"
+    type = "num"
+    name = "base_site_code"
+    [fields.filter]
+        base_site_code = "text"
+    [fields.options]
+        visible = true
+        style = "xl"
+
+[[fields]]
+    label = "Nom du circuit"
+    type = "text"
+    name = "base_site_name"
+    [fields.filter]
+        base_site_name = "text"
+    [fields.options]
+        visible = true
+        style = "xl"
+        primary = true
+
+[[fields]]
+    label = "Dern. obs."
+    type = "date"
+    name = "dern_obs"
+    [fields.filter]
+        dern_obs = "text"
+    [fields.options]
+        visible = true
+        type = "date"
+        style = "xs"
+
+[[fields]]
+    label = "Nb visites"
+    type = "text"
+    name = "nb_obs"
+    [fields.filter]
+        nb_obs = "text"
+    [fields.options]
+        visible = true
+        style = "xs"
+        
+[[fields]]
+    label = "Longueur (km)"
+    type = "text"
+    name = "longueur"
+    [fields.filter]
+        longueur = "text"
+    [fields.options]
+        visible = true
+        style = "xl"
+        primary = true
+
+[filtering]
+    limit = 2000
+
