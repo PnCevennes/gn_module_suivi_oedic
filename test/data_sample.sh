@@ -44,10 +44,10 @@ INSERT INTO monitoring_oedic.t_visite_informations(
     nb_ind_obs_max
     )
     SELECT
-        --'2018-01-07 20:00:00',
-        --'2018-01-07 23:00:00',
-        '20:00',
-        '23:00',
+        '2018-01-07 20:00:00',
+        '2018-01-07 23:00:00',
+        --'20:00',
+        --'23:00',
         v.id_base_visit,
         ref_nomenclatures.get_id_nomenclature('OED_METEO_CIEL', 'CLA'),
         ref_nomenclatures.get_id_nomenclature('OED_METEO_VENT', 'FAI'),
@@ -68,7 +68,7 @@ INSERT INTO monitoring_oedic.t_visite_observations(
     )
     SELECT
         v.id_base_visit,
-        '21:00:00',
+        '2018-01-07 21:00:00',
         ref_nomenclatures.get_id_nomenclature('OED_NAT_OBS', 'CRI'),
         1,
         'Un très beau spécimen!!!'
@@ -86,7 +86,7 @@ INSERT INTO monitoring_oedic.t_visite_observations(
     )
     SELECT
         v.id_base_visit,
-        '21:30:00',
+        '2018-01-07 21:30:00',
         ref_nomenclatures.get_id_nomenclature('OED_NAT_OBS', 'CRI'),
         2,
         'Un très beau couple!!!'

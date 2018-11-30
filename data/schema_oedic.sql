@@ -27,8 +27,8 @@ CREATE TABLE  monitoring_oedic.t_visite_informations
 	nb_ind_obs_max INTEGER,
 	id_nomenclature_meteo_vent INTEGER NOT NULL,
   id_nomenclature_meteo_ciel INTEGER NOT NULL,
-  time_start TIME NOT NULL,
-  time_end TIME NOT NULL,
+  time_start TIMESTAMP NOT NULL,
+  time_end TIMESTAMP NOT NULL,
 
   uuid_oedic_t_visite_informations UUID DEFAULT public.uuid_generate_v4(),
 
@@ -57,7 +57,7 @@ CREATE TABLE monitoring_oedic.t_visite_observations
 (
 	id_visite_observation SERIAL NOT NULL,
 	id_base_visit INTEGER NOT NULL,
-	time_observation TIME NOT NULL,
+	time_observation TIMESTAMP NOT NULL,
 	nb_oiseaux INTEGER NOT NULL,
 	remarque_observation text,
 	id_nomenclature_nature_observation INTEGER,
